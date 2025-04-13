@@ -10,7 +10,7 @@ const Chat = () => {
   const location = useLocation();
   const [name,setName] = useState('');
   const [room,setRoom] = useState('');
-  const [message, setMesssage] = useState('');
+  const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
   const ENDPOINT = 'localhost:5000';
@@ -24,7 +24,7 @@ const Chat = () => {
 
     });
     return () => {
-      socket.emit('disconnect');
+      socket.disconnect();
       socket.off();
     }
   },[ENDPOINT,location.search ]);
@@ -34,18 +34,30 @@ const Chat = () => {
     socket.on('message',(message) =>{
       setMessages([...messages,message]);
     })
-  },[messages])
+  },[messages]);
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+    if(message){
+      socket.emit('sendMessage', message, ()=> setMessage('') );
+    }
+  }
+
+  console.log(message,messages);
 
 
   return (
     <div className={styles.outerContainer}>
         <div className={styles.Container}>
+
           <input value={message}
-          onChange={(event)=> setMessages(event.target.value)}/>
+          onChange={(event)=> setMessages(event.target.value)}
+          onKeyPress={event => event.key === 'Enter' ? sendMessage(event) :  null} />
+
           
         </div>
     </div>
   )
 }
 
-export default Chat
+export default Chat;

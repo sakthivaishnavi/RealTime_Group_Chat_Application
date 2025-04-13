@@ -2,7 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require('/users.js');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
 const PORT = process.env.PORT || 5000;
 
@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('message', { user: user.name, text: message});
 
         callback();
-    })
+    });
 
     socket.on('disconnect',() =>{
         console.log("User has disconnected!");
