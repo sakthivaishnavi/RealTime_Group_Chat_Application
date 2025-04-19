@@ -1,0 +1,12 @@
+/* color theme emerald-#77d496 with black  */
+/* background: linear-gradient(90deg, #f53803, #e2b0ff, #00ecbc); */
+/* background: linear-gradient(45deg, #f53803, #e2b0ff, #00ecbc);
+background-size: 400% 400%;
+animation: gradientAnimation 10s ease infinite;
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+ */

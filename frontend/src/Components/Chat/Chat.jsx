@@ -50,9 +50,9 @@ const Chat = () => {
     <div className={styles.outerContainer}>
         <div className={styles.Container}>
 
-          <input value={message}
+          {/* <input value={message}
           onChange={(event)=> setMessages(event.target.value)}
-          onKeyPress={event => event.key === 'Enter' ? sendMessage(event) :  null} />
+          onKeyPress={event => event.key === 'Enter' ? sendMessage(event) :  null} /> */}
 
           
         </div>
