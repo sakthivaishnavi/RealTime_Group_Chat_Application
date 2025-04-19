@@ -3,6 +3,11 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 import { useLocation } from 'react-router';
 import styles from './Chat.module.css';
+import IconComponent from '../IconComponent/IconComponent';
+import Input from '../Input/Input';
+import Messages from '../Messages/Messages';
+import TextContainer from '../TextContainer/TextContainer';
+
 
 let socket;
 
@@ -10,6 +15,7 @@ const Chat = () => {
   const location = useLocation();
   const [name,setName] = useState('');
   const [room,setRoom] = useState('');
+  const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
@@ -20,21 +26,25 @@ const Chat = () => {
     socket = io(ENDPOINT);
     setName(name);
     setRoom(room);
-    socket.emit('join', {name, room}, () => {
 
+    socket.emit('join', {name, room}, (error) => {
+      if(error){
+        alert(error);
+      }
     });
-    return () => {
-      socket.disconnect();
-      socket.off();
-    }
   },[ENDPOINT,location.search ]);
 
 
   useEffect(() => {
-    socket.on('message',(message) =>{
-      setMessages([...messages,message]);
-    })
-  },[messages]);
+    socket.on('message',message =>{
+      setMessages(messages => [...messages,message]);
+    });
+    
+    socket.on("roomData", ({users}) => {
+      setUsers(users);
+    });
+  },[]);
+
 
   const sendMessage = (event) => {
     event.preventDefault();
@@ -43,19 +53,14 @@ const Chat = () => {
     }
   }
 
-  console.log(message,messages);
-
-
   return (
     <div className={styles.outerContainer}>
         <div className={styles.Container}>
-
-          {/* <input value={message}
-          onChange={(event)=> setMessages(event.target.value)}
-          onKeyPress={event => event.key === 'Enter' ? sendMessage(event) :  null} /> */}
-
-          
+          <IconComponent room={room}/>
+          <Messages messages={messages} />
+          <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>          
         </div>
+        <TextContainer users={users}/>
     </div>
   )
 }
