@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import styles from './Join.module.css';
 
-const Join = () => {
+export default function Join () {
   const [name,setName] = useState('');
   const [room,setRoom] = useState('');
   
@@ -17,9 +17,7 @@ const Join = () => {
           <button className={styles.button} type='submit'>Sign In</button>
         </Link>
       </div>
-
     </div>
   )
 }
 
-export default Join 

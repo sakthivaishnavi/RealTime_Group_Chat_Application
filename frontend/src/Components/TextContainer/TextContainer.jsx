@@ -1,5 +1,5 @@
 import styles from './TextContainer.module.css';
-
+import onlineIcon from '../../assets/onlineIcon.png';
 const TextContainer = ({ users = [] }) => {
     return (
         <div className={styles.textContainer}>

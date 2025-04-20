@@ -1,5 +1,3 @@
-const { get } = require("./router");
-
 const users = [];
 
 const addUser = ({ id, name, room }) => {
@@ -7,15 +5,14 @@ const addUser = ({ id, name, room }) => {
     name = name.trim().toLowerCase();
     room = room.trim().toLowerCase();
 
-    const exisitingUser = users.find((user) => name===user.name && room===user.room);
-
-    if(exisitingUser){
-        return {error : 'Username not available !'};
-    }
+    const existingUser = users.find((user) =>  room===user.room && name===user.name);
+    if(!name || !room) return {error : 'Username and room are required!'};
+    if(existingUser)  return {error : 'Username not available !'};
+    
 
     const user = {id,name,room};
     users.push(user);
-    return { user }
+    return { user };
 }
 
 const removeUser = (id) => {
@@ -29,6 +26,6 @@ const removeUser = (id) => {
 
 const getUser = (id) => users.find((user) => user.id===id);
 
-const getUsersInRoom = (room) => users.find((user)=> user.room === room);
+const getUsersInRoom = (room) => users.filter((user)=> user.room === room);
 
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };

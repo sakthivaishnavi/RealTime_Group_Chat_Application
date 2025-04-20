@@ -11,7 +11,7 @@ const App=() => {
     <Route path='/chat' element={<Chat/>}/>
     </Routes>
   </Router>
-  )
-};
+  );
+}
 
 export default App;
