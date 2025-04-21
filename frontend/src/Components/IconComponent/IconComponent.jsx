@@ -12,8 +12,7 @@ const IconComponent = ({ room }) => {
         </div>
         <div className={styles.rightInnerContainer}>
          <a href="/"><img src={closeIcon} className={styles.closeIcon} alt='close'/></a>
-        </div>
- 
+        </div> 
     </div>
   )
 }
