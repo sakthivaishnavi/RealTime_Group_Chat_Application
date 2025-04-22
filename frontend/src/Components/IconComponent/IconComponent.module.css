@@ -27,6 +27,10 @@
     margin-right: 5%;
   }
 
+  .closeIcon {
+    margin-left:5%;
+  }
+
   .room{
-    color: black;
+    color: white;
   }

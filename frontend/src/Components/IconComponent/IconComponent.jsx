@@ -5,7 +5,7 @@ import closeIcon from '../../assets/closeIcon.png';
 
 const IconComponent = ({ room }) => {
   return (
-    <div className={styles.IconComponent}>
+    <div className={styles.iconComponent}>
         <div className={styles.leftInnerContainer}>
           <img src={onlineIcon} className={styles.onlineIcon} alt='online'/>
           <h3 className={styles.room}>Room : {room}</h3>
