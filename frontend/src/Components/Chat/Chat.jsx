@@ -69,12 +69,14 @@ const Chat = () => {
 
   return (
     <div className={styles.outerChatContainer}>
+      <div className={styles.userListContainer}>
+      <TextContainer users={users} />
+      </div>
       <div className={styles.chatContainer}>
         <IconComponent room={room} />
         <Messages messages={messages} name={name} />
         <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
-      <TextContainer users={users} />
     </div>
   );
 };

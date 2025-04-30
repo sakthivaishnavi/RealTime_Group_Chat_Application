@@ -10,7 +10,7 @@ export default function Join () {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
-        <h1 className={styles.heading}>Join</h1>
+        <h1 className={styles.heading}>Join the Chat</h1>
         <div><input placeholder='Name' type='text'  className={styles.inputField} onChange={(event)=>setName(event.target.value)} /></div><br/>
         <div><input placeholder='Room' type='text'  className={styles.inputField} onChange={(event)=>setRoom(event.target.value)} /></div><br/>
         <Link onClick={event => (!name || !room) ? event.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
