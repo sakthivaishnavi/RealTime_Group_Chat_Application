@@ -1,10 +1,13 @@
-FROM node:24.13.0
+FROM node:20-alpine
+
 WORKDIR /app
-COPY package.json ./
+
+COPY package*.json ./
 RUN npm install
-COPY .
+
+COPY . .
+RUN npm run build
+
 EXPOSE 5002
-CMD ["node", "index.js"]
 
-
-
+CMD ["npm", "start"]
